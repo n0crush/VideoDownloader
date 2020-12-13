@@ -39,7 +39,7 @@ class Facebook:
 		return True
 
 	def getLink(self, url):		#DONE
-		#set getLink_status="Success"	|None| success
+		#set getLink_status="Success"			|None| success
 		#set origin_link				|None| success
 		#return message					|str | fail
 
@@ -62,7 +62,6 @@ class Facebook:
 		else:
 			self.getLink_status = "Success"
 
-		#21:53 PM 11/6/2020--------------
 		reg_for_all = re.compile(r'(hd_src|sd_src|sd_src_no_ratelimit):"(.+?)"')
 		
 		self.origin_link = dict(reg_for_all.findall(res.text))
@@ -71,7 +70,6 @@ class Facebook:
 			return("no such link found")
 		else:
 			return("%d link found" %(len(self.origin_link)))
-		#--------------------------------
 
 	def _getSize(self, raw_size):		#raw_size is str type
 		result = ''
