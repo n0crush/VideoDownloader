@@ -54,7 +54,7 @@ class YoutubeBase:
 	#requests and return respone text decoded
 	def getRequest(self):
 		#('false', callback)			| tuple| fail	
-		#('false', responseTextDecoded)	| str  | success
+		#('false', responseTextDecoded)		| str  | success
 
 		check_video_id = self.checkVideoId(self.url)
 		if check_video_id[0]=='false':
@@ -62,11 +62,11 @@ class YoutubeBase:
 			return ('false','[!] Invalid youtube URL.', check_video_id[1])
 
 		video_id = check_video_id[1]
-
+		
+		#customize User-Agent
 		headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36'}
 
-		url = "https://www.youtube.com/get_video_info?video_id="+video_id+"&el=embedded&ps=default&eurl=&gl=US&hl=en"
-		
+		url = "https://www.youtube.com/get_video_info?video_id="+video_id+"&el=embedded&ps=default&eurl=&gl=US&hl=en"	
 		# or
 		# url = url = "https://www.youtube.com/get_video_info?video_id="+video_id
 
@@ -89,7 +89,7 @@ class YoutubeBase:
 	def getInfo(self, responseTextDecoded):
 		# At ----20:43 PM 12/7/2020---- always True
 		
-		#('false', callback)		| tuple| fail	
+		#('false', callback)			| tuple| fail	
 		#data_as_dict 				| dict | success
 
 		data_input = ''
@@ -216,8 +216,8 @@ class Youtube(YoutubeBase):
 		return itag_formats
 
 	def _getBestQualityLabel(self, tup_list):
-		# ('false', callback)			| tuple | fail
-		# ('true', the_best_itag:int)	| tuple	| success
+		#('false', callback)			| tuple | fail
+		#('true', the_best_itag:int)		| tuple	| success
 
 		#tup_list: [('360p', 18), ('720p', 22)]
 		#pattern: [(18, '360p'), (22, '720p')]
@@ -233,9 +233,9 @@ class Youtube(YoutubeBase):
 		return the_best_itag
 
 	def returnUrlByItag(self,itag, sound=1):
-		#	('true', url:str) 				| tuple	| success, given by itag
-		#	('false', 'cipher' ,'unknow')	| tuple	| ciphered
-		#	('false', callback)				| tuple	| fail
+		#('true', url:str) 				| tuple	| success, given by itag
+		#('false', 'cipher' ,'unknow')			| tuple	| ciphered
+		#('false', callback)				| tuple	| fail
 
 		def f_find(ld):	#ld is a list dictionarys
 			temp = ('false', 'not found', 'unknown')		
@@ -254,8 +254,8 @@ class Youtube(YoutubeBase):
 					return ('true', d['url'])
 			return temp
 
-		#mp4+audio: 'streamingData'>'formats'
-		#mp4 only, mp3: 'streamingData'>'adaptiveFormats'
+		#mp4+audio	: 'streamingData'>'formats'
+		#mp4 only, mp3	: 'streamingData'>'adaptiveFormats'
 		if sound:
 			f_formats = f_find(self.filtered_info['streamingData']['formats'])
 		else:
@@ -294,13 +294,13 @@ class Youtube(YoutubeBase):
 
 	#y1 = YoutubeDownload("https://www.youtube.com/watch?v=4paY_pxFvcw")	#normal
 	#y1 = YoutubeDownload("https://www.youtube.com/watch?v=-IgirY6Kmjw")	#normal
-	#y1 = YoutubeDownload("https://youtu.be/oppFGatt6cA")					#unplayable
-	#y1 = YoutubeDownload("https://youtu.be/OulN7vTDq1I")					#cipher
+	#y1 = YoutubeDownload("https://youtu.be/oppFGatt6cA")			#unplayable
+	#y1 = YoutubeDownload("https://youtu.be/OulN7vTDq1I")			#cipher
 	#y1 = YoutubeDownload("https://www.youtube.com/watch?v=_mUP9wDRZqY")	#error
 	#y1 = YoutubeDownload("https://www.youtube.com/watch?v=viexJiVIf6c")	#private
 	#y1 = YoutubeDownload("https://www.youtube.com/watch?v=LXb3EKWsInQ")	#4k
 	#y1 = YoutubeDownload("https://www.youtube.com/watch?v=KWvvRaoWkoc")	#2k
-	#url = "https://www.youtube.com/watch?v=gFygl4fP3MY&t=71s"				#unplayable
+	#url = "https://www.youtube.com/watch?v=gFygl4fP3MY&t=71s"		#unplayable
 """
 
 
