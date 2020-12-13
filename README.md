@@ -1,1 +1,1 @@
-nothing now
+- I'm a bad guy write bad code. feel free to give feedback or ideal!
