@@ -179,7 +179,7 @@ class Youtube(YoutubeBase):
 
 #from here, only get videoDetail if streamingData is not empty
 	def getListQualityLabel(self):
-		#('false', callback)													| str  | fail
+		#('false', callback)							| str  | fail
 		#('true', [itag_formats:list(tuple), itag_adaptiveFormats:list(tuple)])	| list | success
 
 		#sample of label, currently
