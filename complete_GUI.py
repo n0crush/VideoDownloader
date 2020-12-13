@@ -19,15 +19,7 @@ __info__ = ["github.com/n0crush", "twitter.com/n0crush"]
 
 
 import requests
-"""
-	try:
-		import requests
-	except:
-		pass
-			os.system('pip install requests')
-			print('[WARNING] An Error occured when try to import "requests".')
-			sys.exit('[ RUN AGAIN ]')
-"""
+
 import re, os, sys
 import logging
 from datetime import datetime
@@ -632,6 +624,7 @@ class SettingMenu(Menu):
 		
 		#loghere
 		logger.log(logging.INFO, ("Set folder: %s" %folder))
+		main_log.log(logging.INFO, ("Set default folder: %s" %folder))
 
 	def user_define(self):
 		pass
@@ -740,7 +733,7 @@ class MenuGUI(Base): # OK
 		fb_menu.setWidget(self.widget)
 
 		#facebook-----------------------------------------------
-		fb_menu.add_radiobutton(label="Single file", command=lambda:_curent_option('fb'), variable=fb_checked)#		fb_menu.add_separator()
+		fb_menu.add_radiobutton(label="Single file", command=lambda:_curent_option('fb'), variable=fb_checked)
 		fb_menu.add_separator()
 		fb_menu.add_command(label='Login', command=fb_menu.login)
 		fb_menu.add_separator()
@@ -848,14 +841,6 @@ class GUI:
 		self.mainmenu = MenuGUI(Menu(self.mainframe), self.widget)
 
 		self.parent.config(menu=self.mainmenu.master)
-
-	def change_menu_when_update(self):
-		def ex():
-			sys.exit()
-		self.mainmenu.container['Files'].add_command(label="Exit", command=ex)
-
-	def updateGUI(self):		#notused
-		self.widget.updateWidget()
 
 
 class IO:			#notused
